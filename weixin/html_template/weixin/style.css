@@ -1,0 +1,200 @@
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url("fonts/glyphicons-halflings-regular.eot");
+  src: url("fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("fonts/glyphicons-halflings-regular.woff2") format("woff2"), url("fonts/glyphicons-halflings-regular.woff") format("woff"), url("fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg"); }
+.face-glyphicon {
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+html, body {
+  background-color: #f8f8f8; }
+
+header h1 {
+  background: #2e3238;
+  height: 1.16667rem;
+  line-height: 1.16667rem;
+  text-align: center;
+  color: #fff;
+  font-size: 0.44rem; }
+  header h1::before {
+    content: "\e055";
+    position: absolute;
+    display: inline-block;
+    left: 0.45rem; }
+
+.fade {
+  display: none;
+  opacity: 0;
+  transition: opacity .15s linear; }
+
+.modal-backdrop.in {
+  filter: alpha(opacity=50);
+  opacity: .5; }
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #2e3238; }
+
+section.nav {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background: #fff;
+  width: 4rem;
+  height: 17.78667rem; }
+  section.nav .nav-body {
+    width: 3.68rem; }
+    section.nav .nav-body .info-desc {
+      height: 3.55733rem; }
+    section.nav .nav-body nav {
+      padding: 0.01333rem; }
+      section.nav .nav-body nav ul li {
+        padding: 0 0.26667rem;
+        height: 1.77867rem;
+        line-height: 1.77867rem;
+        text-align: center;
+        font-size: 0.44rem; }
+        section.nav .nav-body nav ul li a.active {
+          display: block;
+          color: green; }
+          section.nav .nav-body nav ul li a.active::after {
+            border-bottom: 0.06667rem solid green; }
+  section.nav .nav-go-back {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0.32rem;
+    background: #fff;
+    height: 17.78667rem;
+    line-height: 17.78667rem;
+    text-align: center; }
+    section.nav .nav-go-back span:before {
+      content: "\e257";
+      color: #2e3238; }
+
+.border-reset {
+  position: relative; }
+  .border-reset::after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 1px solid #e5e5e5;
+    color: #e5e5e5;
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    z-index: 2; }
+
+article.main {
+  color: #999999; }
+  article.main ul li {
+    font-size: 0.34667rem;
+    margin-top: 0.26667rem;
+    background: #fff;
+    padding: 0.4rem;
+    text-indent: 0.64rem; }
+    article.main ul li .item-article {
+      width: 9.2rem; }
+      article.main ul li .item-article .title {
+        text-indent: 0px; }
+      article.main ul li .item-article .video-dilog {
+        padding-top: 0.13333rem;
+        position: relative;
+        min-height: 5.33333rem; }
+        article.main ul li .item-article .video-dilog img {
+          width: 9.2rem;
+          display: block; }
+        article.main ul li .item-article .video-dilog .video-play {
+          background: url("http://static.tianshengwocha.com/img/purse.png") no-repeat center center;
+          width: 0.8rem;
+          position: absolute;
+          height: 0.8rem;
+          top: 2.26667rem;
+          left: 4.2rem; }
+        article.main ul li .item-article .video-dilog video {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 1px;
+          height: 1px;
+          display: block; }
+      article.main ul li .item-article .article-content {
+        max-height: 6.4rem;
+        overflow: hidden; }
+        article.main ul li .item-article .article-content img {
+          display: block;
+          margin: 0 auto; }
+      article.main ul li .item-article .weui-cell {
+        padding: 0.26667rem 0 0 0; }
+      article.main ul li .item-article .weui-cell_link {
+        font-size: 0.37333rem; }
+      article.main ul li .item-article .weui-cell_access .weui-cell__ft {
+        padding-right: 0.34667rem; }
+        article.main ul li .item-article .weui-cell_access .weui-cell__ft:after {
+          content: " ";
+          display: inline-block;
+          height: 0.16rem;
+          width: 0.16rem;
+          border-width: 2px 2px 0 0;
+          border-color: #C8C8CD;
+          border-style: solid;
+          transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+          transform: rotate(135deg);
+          position: relative;
+          top: 0px;
+          position: absolute;
+          top: 50%;
+          margin-top: -0.10667rem;
+          right: 2px; }
+      article.main ul li .item-article .weui-cell_access .weui-cell__top {
+        transform: rotate(-180deg); }
+  article.main .weui-loadmore {
+    width: 65%;
+    margin: 0.56rem auto;
+    line-height: 0.56rem;
+    font-size: 0.37333rem;
+    text-align: center; }
+  article.main .weui-loadmore_line {
+    margin-top: 0.896rem; }
+
+.image-dialog {
+  background: #000;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10rem;
+  height: 17.78667rem;
+  overflow: hidden; }
+  .image-dialog .image-list img {
+    width: 10rem; }
+  .image-dialog .close {
+    position: fixed;
+    bottom: 0.26667rem;
+    color: #fff;
+    left: 4.46667rem; }
+    .image-dialog .close:active {
+      transition: All 0.1s ease-in-out;
+      transform: scale(1.2); }
+    .image-dialog .close span::before {
+      font-family: 'Glyphicons Halflings';
+      font-style: normal;
+      font-weight: normal;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      content: "\e088";
+      font-size: 1.33333rem;
+      opacity: 0.6; }
+
+/*# sourceMappingURL=style.css.map */
