@@ -12,14 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('weixin');
 });
 
-Route::get('/category', 'CategoryController@index');
 
-Route::group([
-    'prefix' => 'product'
-], function (){
-    Route::get('/list/{categoryId}', 'ProductListController@index');
-    Route::get('/info/{productId}', 'ProductInfoController@index');
-});
+//Route::get('')
+

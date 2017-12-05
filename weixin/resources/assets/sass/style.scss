@@ -1,0 +1,336 @@
+$baseline-px: 75px;
+$base-height: 667px * 2;
+$base-width: 375px * 2;
+$header-height: 87.5px;
+$bk-color: #2e3238;
+@function px2rem($px-values,$support-for-ie:false) {
+  //Conver the baseline into rems
+  $baseline-rem: $baseline-px / 1rem * 1;
+  //Print the first line in pixel values
+  @if $support-for-ie {
+    @return $px-values;
+  }
+  //if there is only one (numeric) value, return the property/value line for it.
+  @if type-of($px-values) == "number" {
+    @return $px-values / $baseline-rem;
+  } @else {
+    //Create an empty list that we can dump values into
+    $rem-values: ();
+    @each $value in $px-values {
+      // If the value is zero or not a number, return it
+      @if $value == 0 or type-of($value) != "number" {
+        $rem-values: append($rem-values, $value);
+      } @else if type-of($value) == "number" {
+        $rem-values: append($rem-values, $value / $baseline-rem);
+      }
+    }
+    // Return the property and its list of converted values
+    @return $rem-values;
+  }
+}
+
+@mixin face-glyphicon {
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin face-glyphicon-before {
+  position: absolute;
+  display: inline-block;
+}
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('/fonts/glyphicons-halflings-regular.eot');
+  src: url('/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/glyphicons-halflings-regular.woff2') format('woff2'),
+  url('/fonts/glyphicons-halflings-regular.woff') format('woff'),
+  url('/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+  url('/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+.face-glyphicon {
+  @include face-glyphicon;
+}
+
+html, body {
+  background-color: #f8f8f8;
+}
+
+header {
+  //vertical-align: middle;
+  background: $bk-color;
+  height: px2rem($header-height);
+  line-height: px2rem($header-height);
+  text-align: center;
+  color: #fff;
+  font-size: px2rem(33px);
+  h1 {
+  }
+  .nav-icon {
+    position: absolute;
+    display: block;
+    width: px2rem($base-width / 6);
+    height: px2rem($header-height);
+    line-height: px2rem($header-height);
+    &::before {
+      content: "\e055";
+      @include face-glyphicon-before;
+      left: px2rem(11.250px*3);
+    }
+  }
+
+}
+
+.fade {
+  display: none;
+  opacity: 0;
+  transition: opacity .15s linear;
+}
+
+.nav.in {
+  display: block;
+  filter: alpha(opacity=90);
+  opacity: .9;
+}
+
+.modal-backdrop.in {
+  display: block;
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: $bk-color;
+}
+
+section.nav {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 1999;
+  //background: grey;
+  background: #fff;
+  width: px2rem($base-width / 10 * 4);
+  height: px2rem($base-height);
+  .nav-body {
+    width: px2rem($base-width / 10 * 4 - $base-width / 10 * 4 / 10 * 0.8);
+    .info-desc {
+      height: px2rem($base-height / 5);
+    }
+    nav {
+      padding: px2rem(1px);
+      ul {
+        li {
+          padding: 0 px2rem(20px);
+          height: px2rem($base-height / 10);
+          line-height: px2rem($base-height / 10);
+          text-align: center;
+          font-size: px2rem(33px);
+          a.active{
+            display: block;
+            color: green;
+            &::after {
+              border-bottom: px2rem(5px) solid green;
+            }
+          }
+        }
+      }
+    }
+
+  }
+  .nav-go-back {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: px2rem($base-width / 10 * 4 / 10  * 0.8);
+    background: #fff;
+    height: px2rem($base-height);
+    line-height: px2rem($base-height);
+    text-align: center;
+    span:before {
+      content: "\e257";
+      color: $bk-color;
+    }
+  }
+
+}
+
+.border-reset {
+  position: relative;
+  display: block;
+  //&::before{
+  //  content:" ";
+  //  position:absolute;
+  //  left:0;
+  //  top:0;
+  //  right:0;
+  //  height:1px;
+  //  border-top:1px solid #e5e5e5;
+  //  color:#e5e5e5;
+  //  -webkit-transform-origin:0 0;
+  //  transform-origin:0 0;
+  //  -webkit-transform:scaleY(0.5);
+  //  transform:scaleY(0.5);
+  //  z-index:2;
+  //}
+  &::after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 1px solid #e5e5e5;
+    color: #e5e5e5;
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    z-index: 2;
+  }
+}
+
+article.main {
+  color: #999999;
+
+  ul {
+    li {
+      font-size: px2rem(26px);
+      margin-top: px2rem(20px);
+      background: #fff;
+      padding: px2rem(30px);
+      text-indent: px2rem(48px);
+      .item-article {
+        width: px2rem(690px);
+        .title {
+          text-indent: 0px;
+        }
+        .video-dilog {
+          padding-top: px2rem(10px);;
+          position: relative;
+          min-height: px2rem(400px);
+          img {
+            width: px2rem(690px);
+            display: block;
+          }
+          .video-play {
+            background: url("http://static.tianshengwocha.com/img/purse.png") no-repeat center center;;
+            width: px2rem(60px);
+            //float: left;
+            position: absolute;
+            height: px2rem(60px);
+            top: px2rem(170px);
+            left: px2rem(315px);
+          }
+
+          video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1px;
+            height: 1px;
+            display: block;
+          }
+        }
+
+        .article-content {
+          max-height: px2rem(480px);
+          overflow: hidden;
+          img {
+            display: block;
+            margin: 0 auto;
+          }
+        }
+
+        .weui-cell {
+          padding: px2rem(20px) 0 0 0;
+        }
+        .weui-cell_link {
+          font-size: px2rem(28px);
+        }
+        .weui-cell_access {
+          .weui-cell__ft {
+            padding-right: px2rem(26px);
+            &:after {
+              content: " ";
+              display: inline-block;
+              height: px2rem(12px);
+              width: px2rem(12px);
+              border-width: 2px 2px 0 0;
+              border-color: #C8C8CD;
+              border-style: solid;
+              transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+              transform: rotate(135deg);
+              position: relative;
+              top: 0px;
+              position: absolute;
+              top: 50%;
+              margin-top: px2rem(-8px);
+              right: 2px;
+            }
+          }
+          .weui-cell__top {
+            transform: rotate(-180deg);
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+  .weui-loadmore {
+    width: 65%;
+    margin: px2rem(42px) auto;
+    line-height: px2rem(42px);
+    font-size: px2rem(28px);
+    text-align: center;
+  }
+  .weui-loadmore_line {
+    margin-top: px2rem(33.6px * 2);
+  }
+
+}
+
+.image-dialog {
+  background: #000;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: px2rem($base-width);
+  height: px2rem($base-height);
+  overflow: hidden;
+  .image-list {
+    img {
+      width: px2rem($base-width);
+    }
+  }
+  .close {
+    position: fixed;
+    bottom: px2rem(20px);
+    color: #fff;
+    left: px2rem(335px);
+    &:active {
+      transition: All 0.1s ease-in-out;
+      transform: scale(1.2);
+    }
+    span::before {
+      @include face-glyphicon;
+      content: "\e088";
+      font-size: px2rem(100px);
+      opacity: 0.6;
+    }
+  }
+
+}
