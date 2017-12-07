@@ -3,14 +3,17 @@
         <ul>
             <li class="" v-for="article in articleList">
                 <article class="item-article">
+                    <!--<d-player v-bind:video="{url:article.src, pic:article.thumbnail}" ></d-player>-->
                     <p class="title">{{article.title}}</p>
-                    <div class="article-content" v-html="article.body" :class="{'article-max-height': !article.show}"></div>
-                    <div>
-                        <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link"
-                           @click="triggerMore(article)">
-                            <div class="weui-cell__bd">{{article.moreTitle}}</div>
-                            <span class="weui-cell__ft" :class="{'weui-cell__top': !article.show}"></span>
-                        </a>
+                    <div class="video-dialog">
+                        <div class="video-thumbnail" @click="targetVideo(article, this.event)" v-show="article.show">
+                            <img :src="article.thumbnail">
+                            <span class="video-play"></span>
+                        </div>
+                        <video controls="controls" x-webkit-airplay="true" preload="auto" webkit-playsinline="true"
+                               playsinline="true" v-show="!article.show" @click="play(this.event)">
+                            <source :src="article.src">
+                        </video>
                     </div>
                 </article>
             </li>
@@ -21,29 +24,29 @@
 
 <script>
     import loadMore from'../loadMore'
-    import {getArticleList}  from '../../request/request'
-    let count = 0;
+//    import VueDPlayer from 'vue-dplayer'
+    import {getViodeList}  from '../../request/request'
     export default {
         components: {
             'nav-more': loadMore
         },
         data(){
             return {
-                busy: false,
                 page: 0,
-                articleList: [],
                 total: -1,
+                busy: false,
+                articleList: [],
                 articleIndex: []
             }
         },
         methods: {
-            triggerMore: function (article) {
-                if(article.show){
-                    article.moreTitle = '展开';
-                }else{
-                    article.moreTitle = '收起';
-                }
-                article.show = !article.show
+            play(event){
+                let obj = event.target;
+                obj.paused ? obj.play() : obj.pause();
+            },
+            targetVideo(article, event){
+                this.play({target: event.target.parentNode.parentNode.querySelector('video')})
+                article.show = !article.show;
             },
             loadMore(){
                 this.busy = true;
@@ -52,19 +55,20 @@
                     return;
                 }
                 this.$children[0].loading();
-                getArticleList({page: ++this.page}).then(function (respone) {
+                getViodeList({page: ++this.page}).then(function (respone) {
                     let data = respone.data;
                     this.total = data.total;
                     data.data.forEach(function (article) {
-                        if(this.articleIndex.indexOf(article.id) > -1){
-                            return ;
+                        if (this.articleIndex.indexOf(article.id) > -1) {
+                            return;
                         }
                         this.articleIndex.push(article.id);
                         this.articleList.push({
+                            id: article.id,
                             title: article.title,
-                            body: article.body.body || '',
-                            moreTitle:  '展开',
-                            show: false
+                            show: true,
+                            thumbnail: article.thumbnail,
+                            src: article.src
                         });
                     }.bind(this));
                     this.$children[0].loadend();
@@ -78,7 +82,6 @@
 
         },
         created(){
-
 
         }
     }

@@ -2,17 +2,9 @@
     <article class="main" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
         <ul>
             <li class="" v-for="article in articleList">
-                <article class="item-article">
-                    <p class="title">{{article.title}}</p>
-                    <div class="article-content" v-html="article.body" :class="{'article-max-height': !article.show}"></div>
-                    <div>
-                        <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link"
-                           @click="triggerMore(article)">
-                            <div class="weui-cell__bd">{{article.moreTitle}}</div>
-                            <span class="weui-cell__ft" :class="{'weui-cell__top': !article.show}"></span>
-                        </a>
-                    </div>
-                </article>
+                <div class="content">
+                    <p v-html="article.body"></p>
+                </div>
             </li>
         </ul>
         <nav-more></nav-more>
@@ -21,28 +13,23 @@
 
 <script>
     import loadMore from'../loadMore'
-    import {getArticleList}  from '../../request/request'
-    let count = 0;
+    import {getDuanziList}  from '../../request/request'
+
     export default {
         components: {
             'nav-more': loadMore
         },
         data(){
             return {
-                busy: false,
                 page: 0,
-                articleList: [],
                 total: -1,
+                busy: false,
+                articleList: [],
                 articleIndex: []
             }
         },
         methods: {
             triggerMore: function (article) {
-                if(article.show){
-                    article.moreTitle = '展开';
-                }else{
-                    article.moreTitle = '收起';
-                }
                 article.show = !article.show
             },
             loadMore(){
@@ -52,7 +39,7 @@
                     return;
                 }
                 this.$children[0].loading();
-                getArticleList({page: ++this.page}).then(function (respone) {
+                getDuanziList({page: ++this.page}).then(function (respone) {
                     let data = respone.data;
                     this.total = data.total;
                     data.data.forEach(function (article) {
@@ -61,10 +48,8 @@
                         }
                         this.articleIndex.push(article.id);
                         this.articleList.push({
-                            title: article.title,
-                            body: article.body.body || '',
-                            moreTitle:  '展开',
-                            show: false
+                            id: article.id,
+                            body: article.body || '',
                         });
                     }.bind(this));
                     this.$children[0].loadend();
@@ -78,7 +63,6 @@
 
         },
         created(){
-
 
         }
     }

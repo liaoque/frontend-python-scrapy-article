@@ -1,20 +1,24 @@
 const navList = {
-    list:[
+    list: [
         {
-            title: '笑话',
-            path: ''
+            title: '文章',
+            path: '/',
+            url: '/api/spider/article'
         },
         {
-            title: '无聊',
-            path: 'aa'
+            title: '段子',
+            path: '/duanzi',
+            url: '/api/spider/duanzi'
         },
         {
-            title: '白色',
-            path: 'bb'
+            title: '视频',
+            path: '/video',
+            url: '/api/spider/video'
         },
         {
             title: '写真',
-            path: 'cc'
+            path: '/xiezhen',
+            url: '/api/spider/xiezhen'
         },
 
     ]

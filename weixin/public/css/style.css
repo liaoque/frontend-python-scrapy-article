@@ -17,8 +17,11 @@ body {
   background-color: #f8f8f8;
 }
 
+.article-max-height {
+  max-height: 6.4rem;
+}
+
 header {
-  background: #2e3238;
   height: 1.16666667rem;
   line-height: 1.16666667rem;
   text-align: center;
@@ -26,7 +29,18 @@ header {
   font-size: 0.44rem;
 }
 
-header .nav-icon {
+header .fixed-header,
+header .block-header {
+  background: #2e3238;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+header .fixed-header .nav-icon,
+header .block-header .nav-icon {
   position: absolute;
   display: block;
   width: 1.66666667rem;
@@ -34,11 +48,18 @@ header .nav-icon {
   line-height: 1.16666667rem;
 }
 
-header .nav-icon::before {
+header .fixed-header .nav-icon::before,
+header .block-header .nav-icon::before {
   content: "\E055";
   position: absolute;
   display: inline-block;
   left: 0.45rem;
+}
+
+header .block-header {
+  display: block;
+  height: 100%;
+  position: static;
 }
 
 .fade {
@@ -71,7 +92,7 @@ header .nav-icon::before {
 }
 
 section.nav {
-  position: absolute;
+  position: fixed;
   left: 0px;
   top: 0px;
   z-index: 1999;
@@ -158,45 +179,52 @@ article.main ul li {
   text-indent: 0.64rem;
 }
 
-article.main ul li .item-article {
-  width: 9.2rem;
-}
-
 article.main ul li .item-article .title {
+  color: #333;
+  font-size: 0.39866667rem;
+  padding-bottom: 10px;
   text-indent: 0px;
 }
 
-article.main ul li .item-article .video-dilog {
+article.main ul li .item-article .video-dialog {
   padding-top: 0.13333333rem;
   position: relative;
   min-height: 5.33333333rem;
+  text-align: center;
+  text-indent: initial;
 }
 
-article.main ul li .item-article .video-dilog img {
-  width: 9.2rem;
+article.main ul li .item-article .video-dialog .xiezhen-img {
+  width: 100%;
   display: block;
 }
 
-article.main ul li .item-article .video-dilog .video-play {
-  background: url("http://static.tianshengwocha.com/img/purse.png") no-repeat center center;
-  width: 0.8rem;
-  position: absolute;
-  height: 0.8rem;
-  top: 2.26666667rem;
-  left: 4.2rem;
+article.main ul li .item-article .video-dialog .video-thumbnail {
+  width: 9.2rem;
+  margin: 0 auto;
 }
 
-article.main ul li .item-article .video-dilog video {
+article.main ul li .item-article .video-dialog .video-thumbnail img {
+  width: 100%;
+  display: block;
+}
+
+article.main ul li .item-article .video-dialog .video-thumbnail .video-play {
+  background: url("http://static.tianshengwocha.com/img/purse.png") no-repeat center center;
+  width: 100%;
   position: absolute;
+  height: 100%;
   top: 0;
   left: 0;
-  width: 1px;
-  height: 1px;
   display: block;
+}
+
+article.main ul li .item-article .video-dialog video {
+  width: 100%;
+  height: 100%;
 }
 
 article.main ul li .item-article .article-content {
-  max-height: 6.4rem;
   overflow: hidden;
 }
 
@@ -256,12 +284,13 @@ article.main .weui-loadmore_line {
 
 .image-dialog {
   background: #000;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 10rem;
   height: 17.78666667rem;
   overflow: hidden;
+  z-index: 9999;
 }
 
 .image-dialog .image-list img {
@@ -291,5 +320,20 @@ article.main .weui-loadmore_line {
   content: "\E088";
   font-size: 1.33333333rem;
   opacity: 0.6;
+}
+
+@media screen and (min-width: 1125px) {
+  body > div {
+    max-width: 1125px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  body header .fixed-header,
+  body header .block-header {
+    top: 0;
+    left: auto;
+    width: 1125px;
+  }
 }
 

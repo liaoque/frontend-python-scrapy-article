@@ -4,13 +4,8 @@
             <li class="" v-for="article in articleList">
                 <article class="item-article">
                     <p class="title">{{article.title}}</p>
-                    <div class="article-content" v-html="article.body" :class="{'article-max-height': !article.show}"></div>
-                    <div>
-                        <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link"
-                           @click="triggerMore(article)">
-                            <div class="weui-cell__bd">{{article.moreTitle}}</div>
-                            <span class="weui-cell__ft" :class="{'weui-cell__top': !article.show}"></span>
-                        </a>
+                    <div class="video-dialog" @click="showSwiper(article)">
+                        <img :src="article.thumbnail" class="xiezhen-img" >
                     </div>
                 </article>
             </li>
@@ -21,28 +16,22 @@
 
 <script>
     import loadMore from'../loadMore'
-    import {getArticleList}  from '../../request/request'
-    let count = 0;
+    import {getXiezhenList}  from '../../request/request'
     export default {
         components: {
             'nav-more': loadMore
         },
         data(){
             return {
-                busy: false,
                 page: 0,
-                articleList: [],
                 total: -1,
+                busy: false,
+                articleList: [],
                 articleIndex: []
             }
         },
         methods: {
             triggerMore: function (article) {
-                if(article.show){
-                    article.moreTitle = '展开';
-                }else{
-                    article.moreTitle = '收起';
-                }
                 article.show = !article.show
             },
             loadMore(){
@@ -52,7 +41,7 @@
                     return;
                 }
                 this.$children[0].loading();
-                getArticleList({page: ++this.page}).then(function (respone) {
+                getXiezhenList({page: ++this.page}).then(function (respone) {
                     let data = respone.data;
                     this.total = data.total;
                     data.data.forEach(function (article) {
@@ -61,10 +50,12 @@
                         }
                         this.articleIndex.push(article.id);
                         this.articleList.push({
+                            id: article.id,
                             title: article.title,
-                            body: article.body.body || '',
-                            moreTitle:  '展开',
-                            show: false
+                            thumbnail: article.thumbnail,
+                            imageList: article.image_list.map(function(image){
+                                return image.src;
+                            })
                         });
                     }.bind(this));
                     this.$children[0].loadend();
@@ -72,13 +63,15 @@
                 }.bind(this)).catch(function (error) {
                     console.log(error)
                 }.bind(this));
+            },
+            showSwiper(article){
+                this.$emit('showSwiper', article.imageList)
             }
         },
         mounted() {
 
         },
         created(){
-
 
         }
     }

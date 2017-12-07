@@ -25,3 +25,16 @@ Route::group([
     Route::get('/list/{categoryId}', 'ProductListController@index');
     Route::get('/info/{productId}', 'ProductInfoController@index');
 });
+
+
+
+Route::group([
+    'namespace' => 'Spider',
+    'prefix' => 'spider',
+], function (){
+    Route::get('/article', 'ArticleController@index');
+    Route::get('/duanzi', 'DuanziController@index');
+    Route::get('/gif', 'GifController@index');
+    Route::get('/video', 'VideoController@index');
+    Route::get('/xiezhen', 'XiezhenController@index');
+});
