@@ -330,20 +330,30 @@ article.main {
   position: fixed;
   left: 0;
   top: 0;
-  width: px2rem($base-width);
-  height: px2rem($base-height);
+
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   z-index: 9999;
+  .image-dialog-content{
+    margin: 0 auto;
+    //width: px2rem($base-width);
+    width: 100%;
+  }
   .image-list {
     img {
-      width: px2rem($base-width);
+      width: 100%;
     }
   }
   .close {
+    //padding-top: px2rem(20px);
     position: fixed;
     bottom: px2rem(20px);
     color: #fff;
-    left: px2rem(335px);
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+    left: 0;
     &:active {
       transition: All 0.1s ease-in-out;
       transform: scale(1.2);
@@ -373,4 +383,10 @@ article.main {
       }
     }
   }
+  .image-dialog{
+    .image-dialog-content{
+      width: 1125px;
+    }
+  }
+
 }

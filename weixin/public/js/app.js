@@ -13254,6 +13254,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -13530,20 +13532,22 @@ var render = function() {
           staticClass: "image-dialog"
         },
         [
-          _vm._m(0, false, false),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "close",
-              on: {
-                click: function($event) {
-                  _vm.showMySwiper = !_vm.showMySwiper
+          _c("div", { staticClass: "image-dialog-content" }, [
+            _vm._m(0, false, false),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "close",
+                on: {
+                  click: function($event) {
+                    _vm.showMySwiper = !_vm.showMySwiper
+                  }
                 }
-              }
-            },
-            [_c("span", { staticClass: "face-glyphicon " })]
-          )
+              },
+              [_c("span", { staticClass: "face-glyphicon " })]
+            )
+          ])
         ]
       )
     ],

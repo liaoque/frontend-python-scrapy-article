@@ -287,21 +287,29 @@ article.main .weui-loadmore_line {
   position: fixed;
   left: 0;
   top: 0;
-  width: 10rem;
-  height: 17.78666667rem;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   z-index: 9999;
 }
 
+.image-dialog .image-dialog-content {
+  margin: 0 auto;
+  width: 100%;
+}
+
 .image-dialog .image-list img {
-  width: 10rem;
+  width: 100%;
 }
 
 .image-dialog .close {
   position: fixed;
   bottom: 0.26666667rem;
   color: #fff;
-  left: 4.46666667rem;
+  text-align: center;
+  width: 100%;
+  z-index: 2;
+  left: 0;
 }
 
 .image-dialog .close:active {
@@ -333,6 +341,10 @@ article.main .weui-loadmore_line {
   body header .block-header {
     top: 0;
     left: auto;
+    width: 1125px;
+  }
+
+  .image-dialog .image-dialog-content {
     width: 1125px;
   }
 }

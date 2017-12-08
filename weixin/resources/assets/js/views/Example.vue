@@ -17,20 +17,22 @@
         <div class="modal-backdrop fade in" v-show="modalBackdrop"></div>
 
         <section class="image-dialog" v-show="showMySwiper">
-            <div class="image-list">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
+            <div class="image-dialog-content">
+                <div class="image-list">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
 
+                        </div>
+
+                        <!-- 如果需要导航按钮 -->
+                        <div class="swiper-button-prev swiper-button-white"></div>
+                        <div class="swiper-button-next swiper-button-white"></div>
                     </div>
 
-                    <!-- 如果需要导航按钮 -->
-                    <div class="swiper-button-prev swiper-button-white"></div>
-                    <div class="swiper-button-next swiper-button-white"></div>
                 </div>
-
-            </div>
-            <div class="close" @click="showMySwiper=!showMySwiper">
-                <span class="face-glyphicon "></span>
+                <div class="close" @click="showMySwiper=!showMySwiper">
+                    <span class="face-glyphicon "></span>
+                </div>
             </div>
         </section>
 
@@ -66,7 +68,7 @@
                     imageList.forEach(function (image) {
                         swiper.appendSlide('  <div class="swiper-slide"><img src="' + image + '"></div>')
                     });
-                    setTimeout(function(){
+                    setTimeout(function () {
                         swiper.update();
                     })
                     this.showMySwiper = true;
