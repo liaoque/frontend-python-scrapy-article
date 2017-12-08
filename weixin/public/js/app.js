@@ -13288,6 +13288,10 @@ var computed = Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapState */])(['
                 });
                 this.showMySwiper = true;
             }
+        },
+
+        closeAll: function closeAll(event) {
+            this.$store.dispatch('close');
         }
     },
     mounted: function mounted() {
@@ -13515,7 +13519,8 @@ var render = function() {
             expression: "modalBackdrop"
           }
         ],
-        staticClass: "modal-backdrop fade in"
+        staticClass: "modal-backdrop fade in",
+        on: { click: _vm.closeAll }
       }),
       _vm._v(" "),
       _c(

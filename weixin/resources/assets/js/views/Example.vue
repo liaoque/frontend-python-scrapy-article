@@ -14,7 +14,7 @@
             <router-view v-on:showSwiper="showSwiper"></router-view>
         </article>
 
-        <div class="modal-backdrop fade in" v-show="modalBackdrop"></div>
+        <div class="modal-backdrop fade in" v-show="modalBackdrop" @click="closeAll"></div>
 
         <section class="image-dialog" v-show="showMySwiper">
             <div class="image-dialog-content">
@@ -73,7 +73,10 @@
                     })
                     this.showMySwiper = true;
                 }
-            }
+            },
+            closeAll: function (event) {
+                this.$store.dispatch('close')
+            },
         },
         mounted() {
             this.mySwiper = new Swiper('.swiper-container', {

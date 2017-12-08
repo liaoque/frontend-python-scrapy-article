@@ -231,6 +231,7 @@ article.main ul li .item-article .article-content {
 article.main ul li .item-article .article-content img {
   display: block;
   margin: 0 auto;
+  width: 100%;
 }
 
 article.main ul li .item-article .weui-cell {
