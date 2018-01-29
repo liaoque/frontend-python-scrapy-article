@@ -6,7 +6,7 @@
                     <p class="title">{{article.title}}</p>
                     <div class="article-content" v-html="article.body" :class="{'article-max-height': !article.show}"></div>
                     <div>
-                        <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link"
+                        <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link" :class="{'': !article.show}"
                            @click="triggerMore(article)">
                             <div class="weui-cell__bd">{{article.moreTitle}}</div>
                             <span class="weui-cell__ft" :class="{'weui-cell__top': !article.show}"></span>
