@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="app"></div>
-    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+    <script src="{{ url('js/flexible.js') }}"></script>
     <script src="https://cdn.bootcss.com/Swiper/4.0.6/js/swiper.min.js"></script>
     <script src="{{ url('js/app.js') }}"></script>
 </body>
