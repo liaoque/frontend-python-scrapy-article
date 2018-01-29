@@ -3,7 +3,7 @@
         <header>
             <div class="fixed-header">
                 <span class="face-glyphicon nav-icon" @click="showNav"></span>
-                <h1 class="" @click="showNav">微信工作号</h1>
+                <h1 class="" @click="showNav">烦恼的时候看一会</h1>
             </div>
             <div class="block-header"></div>
         </header>
